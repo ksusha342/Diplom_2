@@ -1,9 +1,9 @@
 package org.example.user;
 
-
 import com.github.javafaker.Faker;
 
 import java.util.Locale;
+
 
 public class UserGenerator {
     public static User random() {

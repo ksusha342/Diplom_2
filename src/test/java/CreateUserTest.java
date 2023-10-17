@@ -22,7 +22,7 @@ public class CreateUserTest {
     @Test
     @DisplayName("Check user creation")
     @Description("Basic user creation test")
-    public void createCourierSuccessfully() {
+    public void createUserSuccessfully() {
         ValidatableResponse response = client.create(user);
 
         accessToken = check.createdUserSuccessfully(response);
@@ -31,7 +31,7 @@ public class CreateUserTest {
     @Test
     @DisplayName("Check the creation of two identical users")
     @Description("Check that it is impossible to create two identical users")
-    public void createTwoIdenticalCouriers() {
+    public void createTwoIdenticalUsers() {
         ValidatableResponse response = client.create(user);
         ValidatableResponse secondResponse = client.create(user);
 
@@ -52,7 +52,7 @@ public class CreateUserTest {
     @Test
     @DisplayName("Check user creation without password field")
     @Description("Check that it is impossible to create user without password field")
-    public void createCourierWithoutPassword() {
+    public void createUserWithoutPassword() {
         user.setPassword(null);
 
         ValidatableResponse response = client.create(user);
@@ -62,7 +62,7 @@ public class CreateUserTest {
     @Test
     @DisplayName("Check user creation without name field")
     @Description("Check that it is impossible to create user without name field")
-    public void createCourierWithoutName() {
+    public void createUserWithoutName() {
         user.setName(null);
 
         ValidatableResponse response = client.create(user);

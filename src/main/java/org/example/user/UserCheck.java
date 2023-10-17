@@ -50,4 +50,26 @@ public class UserCheck {
                 .statusCode(HttpsURLConnection.HTTP_ACCEPTED)
                 .body("message", is("User successfully removed"));
     }
+
+    public void editUserDataSuccessfully(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpsURLConnection.HTTP_OK)
+                .body("success", is(true));
+    }
+
+    public void editUserDataForbidden(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpsURLConnection.HTTP_FORBIDDEN)
+                .body("success", is(false));
+    }
+
+    public void editUserDataUnsuccessfully(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpsURLConnection.HTTP_UNAUTHORIZED)
+                .body("success", is(false));
+    }
+
 }
