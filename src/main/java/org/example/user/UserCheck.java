@@ -20,14 +20,14 @@ public class UserCheck {
         response
                 .assertThat()
                 .statusCode(HttpsURLConnection.HTTP_FORBIDDEN)
-                .body("message", is("User already exists"));
+                .body("success", is(false));
     }
 
     public void createdUserUnsuccessfullyWithoutRequiredFields(ValidatableResponse response) {
         response
                 .assertThat()
                 .statusCode(HttpsURLConnection.HTTP_FORBIDDEN)
-                .body("message", is("Email, password and name are required fields"));
+                .body("success", is(false));
     }
 
     public void loggedInSuccessfully(ValidatableResponse response) {
@@ -41,14 +41,14 @@ public class UserCheck {
         loginResponse
                 .assertThat()
                 .statusCode(HttpsURLConnection.HTTP_UNAUTHORIZED)
-                .body("message", is("email or password are incorrect"));
+                .body("success", is(false));
     }
 
     public void deletedUserSuccessfully(ValidatableResponse response) {
         response
                 .assertThat()
                 .statusCode(HttpsURLConnection.HTTP_ACCEPTED)
-                .body("message", is("User successfully removed"));
+                .body("success", is(true));
     }
 
     public void editUserDataSuccessfully(ValidatableResponse response) {
