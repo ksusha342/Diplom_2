@@ -43,7 +43,7 @@ public class CreateOrderTest {
     @Test
     @DisplayName("Create order without authorization unsuccessfully")
     @Description("Check that it is impossible to create order without authorization")
-    public void createOrderWithoutAuthorizationSuccessfully() {
+    public void createOrderWithoutAuthorizationUnsuccessfully() {
         ValidatableResponse response = orderClient.createOrderWithoutAuthorization(order);
         orderCheck.createdOrderUnsuccessfullyWithoutAuthorization(response);
     }
