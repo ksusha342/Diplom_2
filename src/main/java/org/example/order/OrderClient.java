@@ -7,7 +7,7 @@ import org.example.Client;
 public class OrderClient extends Client {
     public static final String ORDER_CREATE_PATH = "/orders";
     public static final String INGREDIENTS_LIST_PATH = "/ingredients";
-//    public static final String ORDER_LIST_PATH = "/orders";
+    public static final String ORDER_LIST_PATH = "/orders";
 
     public ValidatableResponse createOrderWithoutAutorization(Order order) {
         return spec()
@@ -32,18 +32,18 @@ public class OrderClient extends Client {
                 .then().log().all();
     }
 
-//    public ValidatableResponse cancel(int track) {
-//        return spec()
-//                .queryParam("track", track)
-//                .when()
-//                .put(ORDER_CANCEL_PATH)
-//                .then().log().all();
-//    }
-//
-//    public ValidatableResponse getOrderList() {
-//        return spec()
-//                .when()
-//                .get(ORDER_LIST_PATH)
-//                .then().log().all();
-//    }
+    public ValidatableResponse getOrderListWithAutorization(String accessToken) {
+        return spec()
+                .header("Authorization", accessToken)
+                .when()
+                .get(ORDER_LIST_PATH)
+                .then().log().all();
+    }
+
+    public ValidatableResponse getOrderListWithoutAutorization() {
+        return spec()
+                .when()
+                .get(ORDER_LIST_PATH)
+                .then().log().all();
+    }
 }

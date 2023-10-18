@@ -48,4 +48,17 @@ public class OrderCheck {
 
         return List.of(id1, id2);
     }
+    public void getOrderListSuccessfully(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpsURLConnection.HTTP_OK)
+                .body("success", is(true));
+    }
+
+    public void getOrderListUnsuccessfully(ValidatableResponse response) {
+        response
+                .assertThat()
+                .statusCode(HttpsURLConnection.HTTP_UNAUTHORIZED)
+                .body("success", is(false));
+    }
 }
