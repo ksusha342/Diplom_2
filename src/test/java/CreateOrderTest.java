@@ -36,7 +36,7 @@ public class CreateOrderTest {
     @DisplayName("Create order with authorization successfully")
     @Description("Check that it is possible to create order with authorization")
     public void createOrderWithAuthorizationSuccessfully() {
-        ValidatableResponse response = orderClient.createOrderWithAutorization(order, accessToken);
+        ValidatableResponse response = orderClient.createOrderWithAuthorization(order, accessToken);
         orderCheck.createdOrderSuccessfully(response);
     }
 
@@ -44,8 +44,8 @@ public class CreateOrderTest {
     @DisplayName("Create order without authorization unsuccessfully")
     @Description("Check that it is impossible to create order without authorization")
     public void createOrderWithoutAuthorizationSuccessfully() {
-        ValidatableResponse response = orderClient.createOrderWithoutAutorization(order);
-        orderCheck.createdOrderUnsuccessfullyWithoutAutorization(response);
+        ValidatableResponse response = orderClient.createOrderWithoutAuthorization(order);
+        orderCheck.createdOrderUnsuccessfullyWithoutAuthorization(response);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class CreateOrderTest {
     @Description("Check that it is impossible to create order without ingredients")
     public void createNullIngredientsOrderUnsuccessfully() {
         order.setIngredients(null);
-        ValidatableResponse response = orderClient.createOrderWithAutorization(order, accessToken);
+        ValidatableResponse response = orderClient.createOrderWithAuthorization(order, accessToken);
         orderCheck.createdOrderUnsuccessfullyWithBadRequest(response);
     }
 
@@ -63,7 +63,7 @@ public class CreateOrderTest {
     public void createEmptyIngredientsOrderUnsuccessfully() {
         List<String> emptyIngredients = List.of();
         order.setIngredients(emptyIngredients);
-        ValidatableResponse response = orderClient.createOrderWithAutorization(order, accessToken);
+        ValidatableResponse response = orderClient.createOrderWithAuthorization(order, accessToken);
         orderCheck.createdOrderUnsuccessfullyWithBadRequest(response);
     }
 
@@ -73,7 +73,7 @@ public class CreateOrderTest {
     public void createIncorrectIngredientsOrderUnsuccessfully() {
         List<String> nonexistentIngredients = Arrays.asList("11111", "22222");
         order.setIngredients(nonexistentIngredients);
-        ValidatableResponse response = orderClient.createOrderWithAutorization(order, accessToken);
+        ValidatableResponse response = orderClient.createOrderWithAuthorization(order, accessToken);
         orderCheck.createdOrderUnsuccessfullyWithInternalError(response);
     }
 

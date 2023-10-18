@@ -25,7 +25,7 @@ public class EditUserTest {
     @Description("Check that it is possible to edit user email with authorization")
     public void editUserEmailSuccessfully() {
         user.setEmail(additionalSymbol + user.getEmail());
-        ValidatableResponse response = client.editWithAutorization(user, accessToken);
+        ValidatableResponse response = client.editWithAuthorization(user, accessToken);
         check.editUserDataSuccessfully(response);
     }
 
@@ -34,7 +34,7 @@ public class EditUserTest {
     @Description("Check that it is possible to edit user password with authorization")
     public void editUserPasswordSuccessfully() {
         user.setPassword(additionalSymbol + user.getPassword());
-        ValidatableResponse response = client.editWithAutorization(user, accessToken);
+        ValidatableResponse response = client.editWithAuthorization(user, accessToken);
         check.editUserDataSuccessfully(response);
     }
 
@@ -43,7 +43,7 @@ public class EditUserTest {
     @Description("Check that it is possible to edit user password with authorization")
     public void editUserNameSuccessfully() {
         user.setName(additionalSymbol + user.getName());
-        ValidatableResponse response = client.editWithAutorization(user, accessToken);
+        ValidatableResponse response = client.editWithAuthorization(user, accessToken);
         check.editUserDataSuccessfully(response);
     }
 
@@ -54,7 +54,7 @@ public class EditUserTest {
         user.setEmail(additionalSymbol + user.getEmail());
         user.setPassword(additionalSymbol + user.getPassword());
         user.setName(additionalSymbol + user.getName());
-        ValidatableResponse response = client.editWithAutorization(user, accessToken);
+        ValidatableResponse response = client.editWithAuthorization(user, accessToken);
         check.editUserDataSuccessfully(response);
     }
 
@@ -67,7 +67,7 @@ public class EditUserTest {
         var existingUserAccessToken = check.createdUserSuccessfully(existingUserResponse);
 
         user.setEmail(existingUser.getEmail());
-        ValidatableResponse response = client.editWithAutorization(user, accessToken);
+        ValidatableResponse response = client.editWithAuthorization(user, accessToken);
         check.editUserDataForbidden(response);
 
         check.deletedUserSuccessfully(client.delete(existingUserAccessToken));
@@ -78,7 +78,7 @@ public class EditUserTest {
     @Description("Check that it is impossible to edit user email without authorization")
     public void editUserEmailUnsuccessfully() {
         user.setEmail(additionalSymbol + user.getEmail());
-        ValidatableResponse response = client.editWithoutAutorization(user);
+        ValidatableResponse response = client.editWithoutAuthorization(user);
         check.editUserDataUnsuccessfully(response);
     }
 
@@ -87,7 +87,7 @@ public class EditUserTest {
     @Description("Check that it is impossible to edit user password without authorization")
     public void editUserPasswordUnsuccessfully() {
         user.setPassword(additionalSymbol + user.getPassword());
-        ValidatableResponse response = client.editWithoutAutorization(user);
+        ValidatableResponse response = client.editWithoutAuthorization(user);
         check.editUserDataUnsuccessfully(response);
     }
 
@@ -96,7 +96,7 @@ public class EditUserTest {
     @Description("Check that it is impossible to edit user name without authorization")
     public void editUserNameUnsuccessfully() {
         user.setName(additionalSymbol + user.getName());
-        ValidatableResponse response = client.editWithoutAutorization(user);
+        ValidatableResponse response = client.editWithoutAuthorization(user);
         check.editUserDataUnsuccessfully(response);
     }
 
@@ -107,7 +107,7 @@ public class EditUserTest {
         user.setEmail(additionalSymbol + user.getEmail());
         user.setPassword(additionalSymbol + user.getPassword());
         user.setName(additionalSymbol + user.getName());
-        ValidatableResponse response = client.editWithoutAutorization(user);
+        ValidatableResponse response = client.editWithoutAuthorization(user);
         check.editUserDataUnsuccessfully(response);
     }
 

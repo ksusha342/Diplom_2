@@ -2,10 +2,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.example.order.*;
-import org.example.user.User;
-import org.example.user.UserCheck;
-import org.example.user.UserClient;
-import org.example.user.UserGenerator;
+import org.example.user.*;
 import org.junit.*;
 
 import java.util.List;
@@ -35,10 +32,10 @@ public class GetOrderListTest {
     @DisplayName("Get list of user orders with authorization successfully")
     @Description("Check that it is possible to get list of user orders with authorization")
     public void getOrderListTestWithAuthorizationSuccessfully(){
-        ValidatableResponse response = orderClient.createOrderWithAutorization(order, accessToken);
+        ValidatableResponse response = orderClient.createOrderWithAuthorization(order, accessToken);
         orderCheck.createdOrderSuccessfully(response);
 
-        var getOrderListResponse = orderClient.getOrderListWithAutorization(accessToken);
+        var getOrderListResponse = orderClient.getOrderListWithAuthorization(accessToken);
         orderCheck.getOrderListSuccessfully(getOrderListResponse);
     }
 
@@ -46,10 +43,10 @@ public class GetOrderListTest {
     @DisplayName("Get list of user orders without authorization unsuccessfully")
     @Description("Check that it is impossible to get list of user orders without authorization")
     public void getOrderListTestWithoutAuthorizationUnsuccessfully(){
-        ValidatableResponse response = orderClient.createOrderWithoutAutorization(order);
+        ValidatableResponse response = orderClient.createOrderWithoutAuthorization(order);
         orderCheck.createdOrderSuccessfully(response);
 
-        var getOrderListResponse = orderClient.getOrderListWithoutAutorization();
+        var getOrderListResponse = orderClient.getOrderListWithoutAuthorization();
         orderCheck.getOrderListUnsuccessfully(getOrderListResponse);
     }
 

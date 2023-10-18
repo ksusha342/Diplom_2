@@ -34,7 +34,7 @@ public class UserClient extends Client {
                 .then().log().all();
     }
 
-    public ValidatableResponse editWithAutorization(User user, String accessToken) {
+    public ValidatableResponse editWithAuthorization(User user, String accessToken) {
         return spec()
                 .header("Authorization", accessToken)
                 .body(user)
@@ -43,7 +43,7 @@ public class UserClient extends Client {
                 .then().log().all();
     }
 
-    public ValidatableResponse editWithoutAutorization(User user) {
+    public ValidatableResponse editWithoutAuthorization(User user) {
         return spec()
                 .body(user)
                 .when()
