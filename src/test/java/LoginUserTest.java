@@ -12,6 +12,7 @@ public class LoginUserTest {
     protected static User user;
     protected Credentials credentials;
     private static String accessToken;
+    private final String additionalSymbol = "s";
 
     @BeforeClass
     public static void createUser() {
@@ -37,7 +38,7 @@ public class LoginUserTest {
     @DisplayName("Login user with incorrect email field")
     @Description("Check that it is impossible to login user with incorrect email field")
     public void loginUserWithIncorrectLogin() {
-        credentials.setEmail(credentials.getEmail() + "1");
+        credentials.setEmail(additionalSymbol + credentials.getEmail());
         ValidatableResponse loginResponse = client.login(credentials);
         check.loggedInUnsuccessfullyWithWrongCredentials(loginResponse);
     }
@@ -46,7 +47,7 @@ public class LoginUserTest {
     @DisplayName("Login user with incorrect password field")
     @Description("Check that it is impossible to login user with incorrect password field")
     public void loginUserWithIncorrectPassword() {
-        credentials.setPassword(credentials.getPassword() + "1");
+        credentials.setPassword(additionalSymbol + credentials.getPassword());
         ValidatableResponse loginResponse = client.login(credentials);
         check.loggedInUnsuccessfullyWithWrongCredentials(loginResponse);
     }
@@ -55,15 +56,10 @@ public class LoginUserTest {
     @DisplayName("Login user with with non-existent credentials")
     @Description("Check that it is impossible to login user with non-existent credentials")
     public void loginUserWithNonexistentUser() {
-        credentials.setEmail(credentials.getEmail() + "1");
-        credentials.setPassword(credentials.getPassword() + "1");
+        credentials.setEmail(additionalSymbol + credentials.getEmail());
+        credentials.setPassword(additionalSymbol + credentials.getPassword());
         ValidatableResponse loginResponse = client.login(credentials);
         check.loggedInUnsuccessfullyWithWrongCredentials(loginResponse);
-    }
-
-    @After
-    public void clearCredentials() {
-        credentials = null;
     }
 
     @AfterClass

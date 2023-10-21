@@ -41,11 +41,11 @@ public class CreateOrderTest {
     }
 
     @Test
-    @DisplayName("Create order without authorization unsuccessfully")
-    @Description("Check that it is impossible to create order without authorization")
+    @DisplayName("Create order without authorization successfully")
+    @Description("Check that it is possible to create order without authorization")
     public void createOrderWithoutAuthorizationUnsuccessfully() {
         ValidatableResponse response = orderClient.createOrderWithoutAuthorization(order);
-        orderCheck.createdOrderUnsuccessfullyWithoutAuthorization(response);
+        orderCheck.createdOrderSuccessfully(response);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class CreateOrderTest {
     @DisplayName("Create order with nonexistent ingredients unsuccessfully")
     @Description("Check that it is impossible to create order with nonexistent ingredients")
     public void createIncorrectIngredientsOrderUnsuccessfully() {
-        List<String> nonexistentIngredients = Arrays.asList("11111", "22222");
+        List<String> nonexistentIngredients = Arrays.asList("firstIngredientHash", "secondIngredientHash");
         order.setIngredients(nonexistentIngredients);
         ValidatableResponse response = orderClient.createOrderWithAuthorization(order, accessToken);
         orderCheck.createdOrderUnsuccessfullyWithInternalError(response);
