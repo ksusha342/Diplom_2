@@ -16,11 +16,6 @@ public class OrderCheck {
                 .statusCode(HttpsURLConnection.HTTP_OK)
                 .body("success", is(true));
     }
-    public void createdOrderUnsuccessfullyWithoutAuthorization(ValidatableResponse response) {
-        response
-                .assertThat()
-                .statusCode(HttpsURLConnection.HTTP_MOVED_TEMP);
-    }
 
     public void createdOrderUnsuccessfullyWithBadRequest(ValidatableResponse response) {
         response
